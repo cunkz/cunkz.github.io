@@ -1,1 +1,165 @@
-Hello World
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gilas Amalanda — Software Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root{--accent:#0ea5a4;--bg:#0f1724;--card:#0b1220;--muted:#94a3b8}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;background:linear-gradient(180deg,#071027 0%, #071629 60%);color:#e6eef6}
+    .container{max-width:980px;margin:48px auto;padding:28px}
+    header{display:flex;align-items:center;gap:20px}
+    .logo{font-family:'Playfair Display',serif;font-size:38px;color:white}
+    nav{margin-left:auto}
+    nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
+    nav a.active{color:var(--accent)}
+    .hero{display:grid;grid-template-columns:1fr 320px;gap:32px;margin-top:36px;align-items:start}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:26px;border-radius:12px;box-shadow:0 6px 30px rgba(2,6,23,0.6);}
+    h1{font-family:'Playfair Display',serif;font-size:40px;margin:0 0 8px}
+    .lead{color:var(--muted);margin:0 0 18px}
+    .cta{display:inline-block;padding:10px 14px;border-radius:10px;background:var(--accent);color:#062024;text-decoration:none;font-weight:700}
+    .meta{font-size:13px;color:var(--muted);margin-top:12px}
+    .skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+    .pill{background:rgba(255,255,255,0.03);padding:8px 10px;border-radius:999px;font-size:13px;color:var(--muted)}
+    .profile{display:flex;flex-direction:column;gap:12px}
+    .avatar{width:100%;height:320px;background:linear-gradient(180deg,#0a1a25,#05202a);border-radius:10px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.06);font-weight:700}
+    .section{margin-top:22px}
+    .blog-list{display:flex;flex-direction:column;gap:12px}
+    .post{padding:14px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);}
+    .post h3{margin:0 0 6px}
+    .post p{margin:0;color:var(--muted);font-size:14px}
+    footer{margin-top:40px;color:var(--muted);font-size:13px;text-align:center}
+    /* responsive */
+    @media (max-width:880px){.hero{grid-template-columns:1fr;}.avatar{height:220px}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">Gilas Amalanda</div>
+      <nav>
+        <a href="#/" data-route>Summary</a>
+        <a href="#/about" data-route>About</a>
+        <a href="#/blog" data-route>Blog</a>
+      </nav>
+    </header>
+
+    <main id="app">
+      <!-- pages rendered here -->
+    </main>
+
+    <footer>
+      Built with care · © <span id="year"></span> Gilas Amalanda
+    </footer>
+  </div>
+
+<script>
+// Simple hash router & content for three pages (single-file website)
+const yearEl = document.getElementById('year'); yearEl.textContent = new Date().getFullYear();
+
+const pages = {
+  '/': `
+    <section class="hero">
+      <div class="card">
+        <h1>Gilas Amalanda</h1>
+        <p class="lead">Software developer with 10+ years building backend systems, mobile apps, and reliable APIs. Focused on pragmatic engineering, observability, and developer ergonomics.</p>
+        <a class="cta" href="#/about">About me</a>
+        <div class="meta">Jakarta-based · Open to freelance & contract work</div>
+        <div class="section">
+          <div style="font-weight:700;margin-bottom:8px">Selected skills</div>
+          <div class="skills">
+            <div class="pill">Golang</div>
+            <div class="pill">Node.js</div>
+            <div class="pill">Microservices</div>
+            <div class="pill">MongoDB / Postgres</div>
+            <div class="pill">Android / Flutter</div>
+            <div class="pill">Docker & Kubernetes</div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="profile">
+        <div class="avatar card">Photo / Avatar</div>
+        <div class="card">
+          <div style="font-weight:700">Quick facts</div>
+          <div class="meta">10+ years in software development · Contributor to internal products and mobile apps · Speaker at industry events</div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section card">
+      <h2 style="margin-top:0">Latest from the blog</h2>
+      <div class="blog-list">
+        <article class="post">
+          <h3>Shipping reliable backend at scale</h3>
+          <p>Lessons learned building resilient services: caching strategies, observability and simple deployments that scale with traffic.</p>
+        </article>
+        <article class="post">
+          <h3>From monolith to microservices</h3>
+          <p>Practical steps, anti-patterns to avoid, and how to keep teams productive during the migration.</p>
+        </article>
+      </div>
+    </section>
+  `,
+
+  '/about': `
+    <section class="card">
+      <h1>About — Gilas Amalanda</h1>
+      <p class="lead">I am a software developer with over a decade of experience designing and implementing backend systems, APIs, and consumer-facing mobile apps. My work spans enterprise integrations, product engineering, and building developer-friendly tooling.</p>
+
+      <div class="section">
+        <h3>Experience highlights</h3>
+        <ul style="color:var(--muted)">
+          <li>Worked on FORCA ERP and performance improvements using Redis and caching.</li>
+          <li>Speaker / contributor at Innovation Day and internal Telkom events.</li>
+          <li>Published mobile apps on Google Play under the developer name "GILAS AMALANDA".</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h3>Contact</h3>
+        <p class="meta">Email: <a href="mailto:chunkz.ring@gmail.com">chunkz.ring@gmail.com</a> · Based in Jakarta</p>
+      </div>
+    </section>
+  `,
+
+  '/blog': `
+    <section class="card">
+      <h1>Blog</h1>
+      <p class="lead">Thoughts on engineering, distributed systems, and product development.</p>
+
+      <div class="section blog-list">
+        <article class="post">
+          <h3>Redis as a performance boost for ERP</h3>
+          <p>How caching interactive dashboards with Redis reduced response times and improved the experience for business users.</p>
+        </article>
+        <article class="post">
+          <h3>Making Android apps that solve small problems</h3>
+          <p>Why simple, focused mobile apps often win — and the importance of fast feedback loops on Play Store releases.</p>
+        </article>
+        <article class="post">
+          <h3>Developer productivity: small wins</h3>
+          <p>Automations, developer tooling and CI tweaks that remove friction and help teams move faster.</p>
+        </article>
+      </div>
+    </section>
+  `
+};
+
+function render(){
+  const route = location.hash.replace('#','') || '/';
+  document.querySelectorAll('nav a').forEach(a=>{
+    a.classList.toggle('active', a.getAttribute('href')===('#'+route));
+  });
+  const html = pages[route] || pages['/'];
+  document.getElementById('app').innerHTML = html;
+}
+
+window.addEventListener('hashchange', render);
+window.addEventListener('load', render);
+</script>
+</body>
+</html>
