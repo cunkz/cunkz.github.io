@@ -42,6 +42,51 @@
       border-radius: 25px;
       border: 2px dashed #f0f0f0;
     }
+    .portfolio {
+      max-width: 56rem;
+      margin: 4rem auto 6rem;
+      padding: 0;
+    }
+    .portfolio h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: #333;
+    }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+      gap: 1.25rem;
+    }
+    .portfolio-card {
+      border: 1px solid #e8e8e8;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .portfolio-card:hover {
+      border-color: #ccc;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .portfolio-card .card-title {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0.35rem;
+      color: #333;
+    }
+    .portfolio-card .card-url {
+      font-size: 0.8rem;
+      color: #aaa;
+      margin-bottom: 0.75rem;
+    }
+    .portfolio-card .card-desc {
+      font-size: 0.9rem;
+      color: #686868;
+      line-height: 1.5;
+    }
   </style>
 </head>
 <body>
@@ -71,6 +116,17 @@
     </div>
     <div class="photo">
       <img src="avatar-big.png" alt="Avatar of Gilas Amalanda" />
+    </div>
+  </div>
+
+  <div class="portfolio">
+    <h2>Portfolio</h2>
+    <div class="portfolio-grid">
+      <a href="https://nakamkuy.id" target="_blank" class="portfolio-card">
+        <div class="card-title">Nakamkuy</div>
+        <div class="card-url">nakamkuy.id</div>
+        <div class="card-desc">Peta Kuliner dari YouTube Indonesia — a culinary map that aggregates food content from Indonesian YouTube creators, with filters by creator, region, and content type.</div>
+      </a>
     </div>
   </div>
 </body>
