@@ -132,14 +132,68 @@
       line-height: 1.6;
     }
 
-    .card-badge {
-      display: block;
-      margin-top: 0.75rem;
-      height: 1.15rem;
-    }
-
     .section-spacer {
       margin-top: 2.5rem;
+    }
+
+    .npm-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+
+    .npm-table th {
+      text-align: left;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #aaa;
+      padding: 0 0.75rem 0.6rem 0;
+      border-bottom: 1px solid #ebebeb;
+    }
+
+    .npm-table td {
+      padding: 0.85rem 0.75rem 0.85rem 0;
+      border-bottom: 1px solid #ebebeb;
+      vertical-align: top;
+    }
+
+    .npm-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .npm-table th:last-child,
+    .npm-table td:last-child {
+      padding-right: 0;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .npm-table a.pkg-name {
+      font-weight: 600;
+      color: #1a1a1a;
+      text-decoration: none;
+    }
+
+    .npm-table a.pkg-name:hover {
+      text-decoration: underline;
+    }
+
+    .npm-table .pkg-desc {
+      color: #666;
+    }
+
+    .npm-table .pkg-downloads {
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+
+    .npm-table .pkg-downloads-label {
+      display: block;
+      font-weight: 400;
+      font-size: 0.72rem;
+      color: #aaa;
     }
   </style>
 </head>
@@ -194,21 +248,48 @@
     </div>
 
     <p class="section-label section-spacer">Open Source</p>
-    <div class="portfolio-grid">
-      <a href="https://www.npmjs.com/package/postman-ke-openapi" target="_blank" class="portfolio-card">
-        <div class="card-name">postman-ke-openapi</div>
-        <div class="card-url">npmjs.com/package/postman-ke-openapi</div>
-        <div class="card-desc">Convert Postman collections to OpenAPI specifications.</div>
-        <img class="card-badge" src="https://img.shields.io/npm/dw/postman-ke-openapi?label=weekly%20downloads&color=1a1a1a&style=flat-square" alt="weekly downloads" />
-      </a>
-      <a href="https://www.npmjs.com/package/parsenik" target="_blank" class="portfolio-card">
-        <div class="card-name">parsenik</div>
-        <div class="card-url">npmjs.com/package/parsenik</div>
-        <div class="card-desc">Parse and validate Indonesian NIK (KTP) numbers, including embedded birth date.</div>
-        <img class="card-badge" src="https://img.shields.io/npm/dw/parsenik?label=weekly%20downloads&color=1a1a1a&style=flat-square" alt="weekly downloads" />
-      </a>
-    </div>
+    <table class="npm-table">
+      <thead>
+        <tr>
+          <th>Package</th>
+          <th>Description</th>
+          <th>Downloads</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a class="pkg-name" href="https://www.npmjs.com/package/postman-ke-openapi" target="_blank">postman-ke-openapi</a></td>
+          <td class="pkg-desc">Convert Postman collections to OpenAPI specifications.</td>
+          <td>
+            <span class="pkg-downloads" data-pkg="postman-ke-openapi">&hellip;</span>
+            <span class="pkg-downloads-label">per week</span>
+          </td>
+        </tr>
+        <tr>
+          <td><a class="pkg-name" href="https://www.npmjs.com/package/parsenik" target="_blank">parsenik</a></td>
+          <td class="pkg-desc">Parse and validate Indonesian NIK (KTP) numbers, including embedded birth date.</td>
+          <td>
+            <span class="pkg-downloads" data-pkg="parsenik">&hellip;</span>
+            <span class="pkg-downloads-label">per week</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
   </div>
+
+  <script>
+    document.querySelectorAll('.pkg-downloads').forEach(function (el) {
+      var pkg = el.dataset.pkg;
+      fetch('https://api.npmjs.org/downloads/point/last-week/' + encodeURIComponent(pkg))
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          el.textContent = (data.downloads || 0).toLocaleString();
+        })
+        .catch(function () {
+          el.textContent = '—';
+        });
+    });
+  </script>
 </body>
 </html>
