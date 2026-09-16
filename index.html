@@ -83,11 +83,11 @@
     }
 
     .section-label {
-      font-size: 0.72rem;
+      font-size: 0.82rem;
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: #aaa;
+      color: #666;
       margin: 0 0 1rem;
     }
 
@@ -139,7 +139,7 @@
     .npm-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.875rem;
+      font-size: 0.75rem;
     }
 
     .npm-table th {
@@ -154,13 +154,18 @@
     }
 
     .npm-table td {
-      padding: 0.85rem 0.75rem 0.85rem 0;
+      /* padding: 0.85rem 0.75rem 0.85rem 0; */
+      padding: 0.65rem 0 0.65rem 0;
       border-bottom: 1px solid #ebebeb;
       vertical-align: top;
     }
 
     .npm-table tr:last-child td {
       border-bottom: none;
+    }
+
+    .npm-table th:first-child {
+      width: 25%;
     }
 
     .npm-table th:last-child,
